@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-
     /* Language and Environment */
     "target": "es2021",                                     /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     "module": "commonjs",                                /* Specify what module code is generated. */
@@ -17,6 +16,9 @@
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
     "skipLibCheck": true,
     "strict": true,
+    "experimentalDecorators": true, /* Enables experimental support for ES7 decorators. */
+    "emitDecoratorMetadata": true, /* Enables experimental support for emitting type metadata for decorators. */
+    /* Advanced Options */
   },
   "include": ["src", "tests"]
 }
