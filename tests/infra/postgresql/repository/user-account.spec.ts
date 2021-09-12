@@ -7,26 +7,26 @@ import { getRepository, Repository, getConnection } from 'typeorm'
 import { makeFakeDb } from '@/tests/infra/postgresql/mocks'
 
 describe('PostgreSQLAccountRepository', () => {
+  let sut: PostgreSQLAccountRepository
+  let pgUserRepo: Repository<PostgreSQLUser>
+  let backup: IBackup
+
+  beforeAll(async () => {
+    const db = await makeFakeDb([PostgreSQLUser])
+    backup = db.backup()
+    pgUserRepo = getRepository(PostgreSQLUser)
+  })
+
+  beforeEach(() => {
+    backup.restore()
+    sut = new PostgreSQLAccountRepository()
+  })
+
+  afterAll(async () => {
+    await getConnection().close()
+  })
+
   describe('load', () => {
-    let sut: PostgreSQLAccountRepository
-    let pgUserRepo: Repository<PostgreSQLUser>
-    let backup: IBackup
-
-    beforeAll(async () => {
-      const db = await makeFakeDb([PostgreSQLUser])
-      backup = db.backup()
-      pgUserRepo = getRepository(PostgreSQLUser)
-    })
-
-    beforeEach(() => {
-      backup.restore()
-      sut = new PostgreSQLAccountRepository()
-    })
-
-    afterAll(async () => {
-      await getConnection().close()
-    })
-
     it('should return an account if email exists', async () => {
       await pgUserRepo.save({ email: 'existing_email' })
 
@@ -39,6 +39,18 @@ describe('PostgreSQLAccountRepository', () => {
       const account = await sut.load({ email: 'new_email' })
 
       expect(account).toBeUndefined()
+    })
+  })
+  describe('saveWithFacebook', () => {
+    it('should create an account if id is undefined', async () => {
+      await sut.saveWithFacebook({
+        email: 'any_email',
+        name: 'any_name',
+        facebookId: 'any_fb_id'
+      })
+      const pgUser = await pgUserRepo.findOne({ email: 'any_email' })
+
+      expect(pgUser?.id).toBe(1)
     })
   })
 })
