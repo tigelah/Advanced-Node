@@ -12,3 +12,10 @@ export class RequiredFieldError extends Error {
     this.name = 'RequiredFieldError'
   }
 }
+
+export class UnauthorizedError extends Error {
+  constructor () {
+    super('UnauthorizedError')
+    this.name = 'UnauthorizedError'
+  }
+}
