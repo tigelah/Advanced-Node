@@ -1,4 +1,4 @@
-import { AccessToken } from '@/domain/models'
+import { AccessToken } from '@/domain/entities'
 import { FacebookAuthentication } from '@/domain/features/facebook-authentication'
 import { Controller } from '@/application/controllers'
 import { HttpResponse, unauthorized, ok } from '@/application/helpers'

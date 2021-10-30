@@ -1,9 +1,9 @@
 import { LoadFacebookUserApi } from '@/domain/contracts/apis'
 import { TokenGenerator } from '@/domain/contracts/crypto'
-import { AuthenticationError } from '@/domain/errors'
+import { AuthenticationError } from '@/domain/entities/errors'
 import { FacebookAuthentication } from '@/domain/features'
 import { LoadUserAccountRepository, SaveFacebookAccountRepository } from '@/domain/contracts/repository'
-import { FacebookAccount, AccessToken } from '@/domain/models'
+import { FacebookAccount, AccessToken } from '@/domain/entities'
 
 type Params = FacebookAuthentication.Params
 type Result = FacebookAuthentication.Result
