@@ -61,7 +61,7 @@ describe('JwtTokenHandler', () => {
       fakeJwt.verify.mockImplementation(() => ({ key }))
     })
 
-    it('should call sign with correct params', async () => {
+    it('should call sign with correct input', async () => {
       await sut.validateToken({ token })
       expect(fakeJwt.verify).toHaveBeenCalledWith(token, secret)
       expect(fakeJwt.verify).toHaveBeenCalledTimes(1)

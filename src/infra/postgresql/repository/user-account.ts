@@ -3,13 +3,8 @@ import { PostgreSQLUser } from '@/infra/postgresql/entities'
 
 import { getRepository } from 'typeorm'
 
-type LoadParams = LoadUserAccountRepository.Params
-type LoadResult = LoadUserAccountRepository.Result
-type SaveParams = SaveFacebookAccountRepository.Params
-type SaveResult = SaveFacebookAccountRepository.Result
-
 export class PostgreSQLAccountRepository implements LoadUserAccountRepository, SaveFacebookAccountRepository {
-  async load ({ email }: LoadParams): Promise<LoadResult> {
+  async load ({ email }: LoadUserAccountRepository.Input): Promise<LoadUserAccountRepository.Output> {
     const pgUserRepo = getRepository(PostgreSQLUser)
     const pgUser = await pgUserRepo.findOne({ email })
 
@@ -21,7 +16,7 @@ export class PostgreSQLAccountRepository implements LoadUserAccountRepository, S
     }
   }
 
-  async saveWithFacebook ({ id, name, email, facebookId }: SaveParams): Promise<SaveResult> {
+  async saveWithFacebook ({ id, name, email, facebookId }: SaveFacebookAccountRepository.Input): Promise<SaveFacebookAccountRepository.Output> {
     const pgUserRepo = getRepository(PostgreSQLUser)
     let resultId: string
     if (id === undefined) {
