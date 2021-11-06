@@ -71,5 +71,21 @@ describe('JwtTokenHandler', () => {
       const generatedKey = await sut.validateToken({ token })
       expect(generatedKey).toBe(key)
     })
+
+    it('should rethrow if verify throws', async () => {
+      fakeJwt.verify.mockImplementationOnce(() => { throw new Error('key_error') })
+
+      const promise = sut.validateToken({ token })
+
+      await expect(promise).rejects.toThrow(new Error('key_error'))
+    })
+
+    it('should throw if verify returns null | undefined', async () => {
+      fakeJwt.verify.mockImplementationOnce(() => null)
+
+      const promise = sut.validateToken({ token })
+
+      await expect(promise).rejects.toThrow()
+    })
   })
 })
