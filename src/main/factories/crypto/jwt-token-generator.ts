@@ -1,4 +1,4 @@
-import { JwtTokenHandler } from '@/infra/crypto/jwt-token-generator'
+import { JwtTokenHandler } from '@/infra/crypto'
 
 import { env } from '@/main/config/env'
 
