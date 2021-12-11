@@ -33,5 +33,5 @@
 
 > ## Fluxo de exceção: Erro ao atualizar dados do usuário
 
-1. Apagar a foto criada no FileStorage
+1. ✅ Apagar a foto criada no FileStorage
 2. Repassar o mesmo erro recebido
