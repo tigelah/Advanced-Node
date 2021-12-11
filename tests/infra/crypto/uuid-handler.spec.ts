@@ -1,15 +1,10 @@
-import { UUIDGenerator } from '@/domain/contracts/gateways'
+import { UUIDHandler } from '@/infra/crypto'
 
-import { v4 } from 'uuid'
 import { mocked } from 'ts-jest/utils'
 
-jest.mock('uuid')
+import { v4 } from 'uuid'
 
-export class UUIDHandler {
-  uuid ({ key }: UUIDGenerator.Input): UUIDGenerator.Output {
-    return `${key}_${v4()}`
-  }
-}
+jest.mock('uuid')
 
 describe('UUIDHandler', () => {
   let sut: UUIDHandler
