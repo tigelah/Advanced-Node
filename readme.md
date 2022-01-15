@@ -1,4 +1,5 @@
 [![Coverage Status](https://coveralls.io/repos/github/tigelah/Advanced-Node/badge.svg?branch=main)](https://coveralls.io/github/tigelah/Advanced-Node?branch=main)
+[![codecov](https://codecov.io/gh/tigelah/Advanced-Node/branch/main/graph/badge.svg?token=B8KQHMIJN6)](https://codecov.io/gh/tigelah/Advanced-Node)
 [![Build Status](https://app.travis-ci.com/tigelah/Advanced-Node.svg?branch=main)](https://app.travis-ci.com/tigelah/Advanced-Node)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
