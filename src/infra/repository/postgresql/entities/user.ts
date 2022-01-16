@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
 @Entity('tb_usuarios')
-export class PostgreSQLUser extends BaseEntity {
+export class PostgreSQLUser {
   @PrimaryGeneratedColumn()
   id!: number
 
