@@ -1,28 +1,37 @@
 import { PgUserProfileRepository } from '@/infra/repository/postgresql'
 import { PostgreSQLUser } from '@/infra/repository/postgresql/entities'
+import { PgConnection } from '@/infra/repository/postgresql/helpers'
+import { PgRepository } from '@/infra/repository/postgresql/repository'
+
 import { makeFakeDb } from '@/tests/infra/gateways/repository/postgresql/mocks'
 
 import { IBackup } from 'pg-mem'
-import { getRepository, Repository, getConnection } from 'typeorm'
+import { Repository } from 'typeorm'
 
 describe('PgUserProfileRepository', () => {
   let sut: PgUserProfileRepository
   let pgUserRepo: Repository<PostgreSQLUser>
   let backup: IBackup
+  let connection: PgConnection
 
   beforeAll(async () => {
+    connection = PgConnection.getInstance()
     const db = await makeFakeDb([PostgreSQLUser])
     backup = db.backup()
-    pgUserRepo = getRepository(PostgreSQLUser)
+    pgUserRepo = connection.getRepository(PostgreSQLUser)
   })
 
   afterAll(async () => {
-    await getConnection().close()
+    await connection.disconnect()
   })
 
   beforeEach(() => {
     backup.restore()
     sut = new PgUserProfileRepository()
+  })
+
+  it('should extend PgRepository', async () => {
+    expect(sut).toBeInstanceOf(PgRepository)
   })
 
   describe('load', () => {
