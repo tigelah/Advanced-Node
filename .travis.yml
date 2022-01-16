@@ -2,13 +2,11 @@ sudo: false
 language: node_js
 node_js:
   - 16
-
 env:
   global:
     - COVERALLS_PARALLEL=true
 script:
   - npm run lint
-  -  npm install coveralls --save-dev
   - npm run test:coveralls
   - npm install codecov -g
 after_success:
