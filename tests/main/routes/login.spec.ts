@@ -1,7 +1,7 @@
 import { PostgreSQLUser } from '@/infra/repository/postgresql/entities'
 import { app } from '@/main/config/app'
 import { UnauthorizedError } from '@/application/errors'
-import { makeFakeDb } from '@/../tests/infra/gateways/repository/postgresql/mocks'
+import { makeFakeDb } from '@/tests/infra/gateways/repository/postgresql/mocks'
 
 import { IBackup } from 'pg-mem'
 import { getConnection } from 'typeorm'
