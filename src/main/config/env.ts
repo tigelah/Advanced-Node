@@ -10,5 +10,5 @@ export const env = {
     bucket: process.env.AWS_S3_BUCKET ?? ''
   },
   port: process.env.PORT ?? 8000,
-  jwtSecret: process.env.JWT_SECRET ?? ''
+  jwtSecret: process.env.JWT_SECRET ?? '!@#!anjsdhjah@94'
 }
